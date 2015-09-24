@@ -258,6 +258,12 @@ urm.restrictions.editbutton.DoClick = function()
 	local usergroups = {}
 	local strings = {}
 	local type = ""
+	
+	if not urm.loadouts.itemlist:GetSelected() or not urm.restrictions.itemlist:GetSelected()[1] then
+		ULib.tsayError( LocalPlayer(), "Please select an item to edit", true )
+		return
+	end
+	
 	for k,usergroup in pairs(urm.restrictions.grouplist:GetSelected()) do
 		usergroup = urm.restrictions.itemlist:GetSelected()[1]:GetValue(1)
 		type = urm.restrictions.RestrictTypes[urm.restrictions.typelist:GetSelected()[1]:GetValue(1)]
