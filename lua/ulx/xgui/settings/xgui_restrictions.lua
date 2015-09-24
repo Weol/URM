@@ -259,7 +259,7 @@ urm.restrictions.editbutton.DoClick = function()
 	local strings = {}
 	local type = ""
 	
-	if not urm.loadouts.itemlist:GetSelected() or not urm.restrictions.itemlist:GetSelected()[1] then
+	if not urm.restrictions.itemlist:GetSelected() or not urm.restrictions.itemlist:GetSelected()[1] then
 		ULib.tsayError( LocalPlayer(), "Please select an item to edit", true )
 		return
 	end
