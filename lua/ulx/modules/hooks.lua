@@ -118,6 +118,12 @@ hook.Add( "PlayerSpawnNPC", "TIIPURMPlayerSpawnNPC", TIIP.URM.PlayerSpawnNPC, -1
 
 function TIIP.URM.PlayerSpawnedNPC( ply, ent )
 	local haslimit,limit = TIIP.URM.HasURMLimit(ply,ent:GetClass())
+	
+	-- Make sure that restricted weapons that are dropped by NPCs won't be abled to be picked up.
+	if ent:GetActiveWeapon() then
+		ent:GetActiveWeapon().TIIPURMHasSpawned = true
+	end
+	
 	if haslimit then
 		if (type(limit) == "string") then
 			ply:AddCount(limit,ent)
@@ -249,7 +255,7 @@ timer.Simple(5, function()
 	--Override CheckLimit function
 	local meta = FindMetaTable( "Player" )
 	if not meta then return end
-	
+
 	function meta:CheckLimit( id, limit )
 		local v = TIIP.URM.HasURMLimit(self,id)
 		if v then return TIIP.URM.CheckLimit(self,v) end
