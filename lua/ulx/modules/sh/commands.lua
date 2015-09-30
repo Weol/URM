@@ -21,7 +21,8 @@ TIIP.URM.Weapons = {
 	"weapon_rpg",
 	"weapon_shotgun",
 	"weapon_smg1",
-	"weapon_stunstick"
+	"weapon_stunstick",
+	"weapon_annabelle"
 }
 for k, v in pairs(list.Get( "Weapon" )) do
 	table.insert(TIIP.URM.Weapons,k)
