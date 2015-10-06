@@ -312,4 +312,4 @@ end
 xgui.hookEvent( "TIIPURMLimits", "process", urm.limits.process )
 urm.limits.Initialize()
 
-xgui.addSettingModule( "Limits", urm.limits.panel, "icon16/table.png" ) 
+xgui.addSettingModule( "Limits", urm.limits.panel, "icon16/table.png", "xgui_urm" ) 

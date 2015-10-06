@@ -387,5 +387,5 @@ function urm.process( len )
 end
 net.Receive( "TIIPURMUpdateStream", urm.process )
 
-xgui.addSettingModule( "Loadouts", urm.loadouts.panel, "icon16/briefcase.png" )
+xgui.addSettingModule( "Loadouts", urm.loadouts.panel, "icon16/briefcase.png", "xgui_urm" )
  

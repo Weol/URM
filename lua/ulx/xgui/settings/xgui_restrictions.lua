@@ -305,4 +305,4 @@ end
 xgui.hookEvent( "TIIPURMRestrictions", "process", urm.restrictions.process )
 urm.restrictions.Initialize()
 
-xgui.addSettingModule( "Restrictions", urm.restrictions.panel, "icon16/shield.png" ) 
+xgui.addSettingModule( "Restrictions", urm.restrictions.panel, "icon16/shield.png", "xgui_urm" ) 
