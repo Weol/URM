@@ -32,7 +32,7 @@ function TIIP.URM.PlayerSpawnedSENT( ply, ent )
 		ply:AddCount(haslimit,ent)
 	end
 end
-hook.Add( "PlayerSpawnedSENT", "TIIPURMPlayerSpawnedProp", TIIP.URM.PlayerSpawnedSENT, -10 )
+hook.Add( "PlayerSpawnedSENT", "TIIPURMPlayerSpawnedSENT", TIIP.URM.PlayerSpawnedSENT, -10 )
 
 function TIIP.URM.PlayerSpawnProp( ply, mdl )
 	local value = TIIP.URM.CheckRestrictions(ply,mdl,"prop")
