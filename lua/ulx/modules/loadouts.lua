@@ -68,9 +68,13 @@ function TIIP.URM.SetPlayerLoadout(ply)
 	if not TIIP.URM.Loadouts[ply:GetUserGroup()] then return end
 	if table.Count(TIIP.URM.Loadouts[ply:GetUserGroup()]) < 1 then return end
 	ply:StripWeapons()
+	
+	ply.WhiteListWeapons = {}
 	for k,v in pairs(TIIP.URM.Loadouts[ply:GetUserGroup()]) do
+		ply.WhiteListWeapons[k] = true
 		ply:Give(k)
 	end
+	
 	ply:StripAmmo()
 	for k,v in pairs(TIIP.URM.Loadouts[ply:GetUserGroup()]) do
 		local weapon = ply:GetWeapon(k)
