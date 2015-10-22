@@ -20,7 +20,7 @@ function TIIP.URM.PlayerSpawnSENT( ply, sent )
 		return false
 	end		
 end
-hook.Add( "PlayerSpawnSENT", "TIIPURMPlayerSpawnSENT", TIIP.URM.PlayerSpawnSENT, -10 )
+hook.Add( "PlayerSpawnSENT", "TIIPURMPlayerSpawnSENT", TIIP.URM.PlayerSpawnSENT, -1 )
 
 function TIIP.URM.PlayerSpawnedSENT( ply, ent )
 	local haslimit,limit = TIIP.URM.HasURMLimit(ply,ent:GetClass())
@@ -32,7 +32,7 @@ function TIIP.URM.PlayerSpawnedSENT( ply, ent )
 		ply:AddCount(haslimit,ent)
 	end
 end
-hook.Add( "PlayerSpawnedSENT", "TIIPURMPlayerSpawnedProp", TIIP.URM.PlayerSpawnedSENT, -10 )
+hook.Add( "PlayerSpawnedSENT", "TIIPURMPlayerSpawnedProp", TIIP.URM.PlayerSpawnedSENT, -1 )
 
 function TIIP.URM.PlayerSpawnProp( ply, mdl )
 	local value = TIIP.URM.CheckRestrictions(ply,mdl,"prop")
@@ -47,7 +47,7 @@ function TIIP.URM.PlayerSpawnProp( ply, mdl )
 		return false
 	end		
 end
-hook.Add( "PlayerSpawnProp", "TIIPURMPlayerSpawnProp", TIIP.URM.PlayerSpawnProp, -10 )
+hook.Add( "PlayerSpawnProp", "TIIPURMPlayerSpawnProp", TIIP.URM.PlayerSpawnProp, -1 )
 
 function TIIP.URM.PlayerSpawnedProp( ply, model, ent )
 	local haslimit, limit = TIIP.URM.HasURMLimit(ply,model)
@@ -59,7 +59,7 @@ function TIIP.URM.PlayerSpawnedProp( ply, model, ent )
 		ply:AddCount(haslimit,ent)
 	end
 end
-hook.Add( "PlayerSpawnedProp", "TIIPURMPlayerSpawnedProp", TIIP.URM.PlayerSpawnedProp, -10 )
+hook.Add( "PlayerSpawnedProp", "TIIPURMPlayerSpawnedProp", TIIP.URM.PlayerSpawnedProp, -1 )
 
 
 function TIIP.URM.CanTool( ply, tr, tool )
@@ -72,7 +72,7 @@ function TIIP.URM.CanTool( ply, tr, tool )
 	end
 	TIIPURMLog("%s(%s) used tool %s on %s",ply:Name(),ply:SteamID(),tool,tr.Entity:GetModel())
 end
-hook.Add( "CanTool", "TIIPURMCanTool", TIIP.URM.CanTool, -10 )
+hook.Add( "CanTool", "TIIPURMCanTool", TIIP.URM.CanTool, -1 )
 
 function TIIP.URM.PlayerSpawnEffect( ply, mdl )
 	local value = TIIP.URM.CheckRestrictions(ply,mdl,"effect")
@@ -87,7 +87,7 @@ function TIIP.URM.PlayerSpawnEffect( ply, mdl )
 		return false
 	end		
 end
-hook.Add( "PlayerSpawnEffect", "TIIPURMPlayerSpawnEffect", TIIP.URM.PlayerSpawnEffect, -10 )
+hook.Add( "PlayerSpawnEffect", "TIIPURMPlayerSpawnEffect", TIIP.URM.PlayerSpawnEffect, -1 )
 
 function TIIP.URM.PlayerSpawnedEffect( ply, model, ent )
 	local haslimit, limit = TIIP.URM.HasURMLimit(ply,model)
@@ -99,7 +99,7 @@ function TIIP.URM.PlayerSpawnedEffect( ply, model, ent )
 		ply:AddCount(haslimit,ent)
 	end
 end
-hook.Add( "PlayerSpawnedEffect", "TIIPURMPlayerSpawnedEffect", TIIP.URM.PlayerSpawnedEffect, -10 )
+hook.Add( "PlayerSpawnedEffect", "TIIPURMPlayerSpawnedEffect", TIIP.URM.PlayerSpawnedEffect, -1 )
 
 function TIIP.URM.PlayerSpawnNPC( ply, npc, weapon )
 	local value = TIIP.URM.CheckRestrictions(ply,npc,"npc")
@@ -114,7 +114,7 @@ function TIIP.URM.PlayerSpawnNPC( ply, npc, weapon )
 		return false
 	end		
 end
-hook.Add( "PlayerSpawnNPC", "TIIPURMPlayerSpawnNPC", TIIP.URM.PlayerSpawnNPC, -10 )
+hook.Add( "PlayerSpawnNPC", "TIIPURMPlayerSpawnNPC", TIIP.URM.PlayerSpawnNPC, -1 )
 
 function TIIP.URM.PlayerSpawnedNPC( ply, ent )
 	local haslimit,limit = TIIP.URM.HasURMLimit(ply,ent:GetClass())
@@ -132,7 +132,7 @@ function TIIP.URM.PlayerSpawnedNPC( ply, ent )
 		ply:AddCount(haslimit,ent)
 	end
 end
-hook.Add( "PlayerSpawnedNPC", "TIIPURMPlayerSpawnedNPC", TIIP.URM.PlayerSpawnedNPC, -10 )
+hook.Add( "PlayerSpawnedNPC", "TIIPURMPlayerSpawnedNPC", TIIP.URM.PlayerSpawnedNPC, -1 )
 
 function TIIP.URM.PlayerSpawnRagdoll( ply, mdl )
 	local value = TIIP.URM.CheckRestrictions(ply,mdl,"ragdoll")
@@ -147,7 +147,7 @@ function TIIP.URM.PlayerSpawnRagdoll( ply, mdl )
 		return false
 	end		
 end
-hook.Add( "PlayerSpawnRagdoll", "TIIPURMPlayerSpawnRagdoll", TIIP.URM.PlayerSpawnRagdoll, -10 )
+hook.Add( "PlayerSpawnRagdoll", "TIIPURMPlayerSpawnRagdoll", TIIP.URM.PlayerSpawnRagdoll, -1 )
 
 function TIIP.URM.PlayerSpawnedRagdoll( ply, model, ent )
 	local haslimit,limit = TIIP.URM.HasURMLimit(ply,model)
@@ -159,7 +159,7 @@ function TIIP.URM.PlayerSpawnedRagdoll( ply, model, ent )
 		ply:AddCount(haslimit,ent)
 	end
 end
-hook.Add( "PlayerSpawnedRagdoll", "TIIPURMPlayerSpawnedRagdoll", TIIP.URM.PlayerSpawnedRagdoll, -10 )
+hook.Add( "PlayerSpawnedRagdoll", "TIIPURMPlayerSpawnedRagdoll", TIIP.URM.PlayerSpawnedRagdoll, -1 )
 
 function TIIP.URM.PlayerSpawnSWEP( ply, class, weapon )
 	local value = TIIP.URM.CheckRestrictions(ply,class,"swep")
@@ -174,8 +174,8 @@ function TIIP.URM.PlayerSpawnSWEP( ply, class, weapon )
 		return false
 	end		
 end
-hook.Add( "PlayerSpawnSWEP", "TIIPURMPlayerSpawnSWEP", TIIP.URM.PlayerSpawnSWEP, -10 )
-hook.Add( "PlayerGiveSWEP", "TIIPURMPlayerSpawnSWEP", TIIP.URM.PlayerSpawnSWEP, -10 )
+hook.Add( "PlayerSpawnSWEP", "TIIPURMPlayerSpawnSWEP", TIIP.URM.PlayerSpawnSWEP, -1 )
+hook.Add( "PlayerGiveSWEP", "TIIPURMPlayerSpawnSWEP", TIIP.URM.PlayerSpawnSWEP, -1 )
 
 function TIIP.URM.PlayerSpawnedSWEP( ply, ent )
 	local haslimit,limit = TIIP.URM.HasURMLimit(ply,ent:GetClass())
@@ -187,7 +187,7 @@ function TIIP.URM.PlayerSpawnedSWEP( ply, ent )
 		ply:AddCount(haslimit,ent)
 	end
 end
-hook.Add( "PlayerSpawnedSWEP", "TIIPURMPlayerSpawnedSWEP", TIIP.URM.PlayerSpawnedSWEP, -10 )
+hook.Add( "PlayerSpawnedSWEP", "TIIPURMPlayerSpawnedSWEP", TIIP.URM.PlayerSpawnedSWEP, -1 )
 
 function TIIP.URM.PlayerCanPickupWeapon( ply, weapon )
 	if not weapon then return end
@@ -205,7 +205,7 @@ function TIIP.URM.PlayerCanPickupWeapon( ply, weapon )
 		return true 
 	end
 end
-hook.Add( "PlayerCanPickupWeapon", "TIIPURMPlayerCanPickupWeapon", TIIP.URM.PlayerCanPickupWeapon, -10 )
+hook.Add( "PlayerCanPickupWeapon", "TIIPURMPlayerCanPickupWeapon", TIIP.URM.PlayerCanPickupWeapon, -1 )
 
 function TIIP.URM.PlayerSpawnVehicle( ply, mdl, name, vehicle_table )
 	local value = TIIP.URM.CheckRestrictions(ply,name,"vehicle")
@@ -220,7 +220,7 @@ function TIIP.URM.PlayerSpawnVehicle( ply, mdl, name, vehicle_table )
 		return false
 	end	
 end
-hook.Add( "PlayerSpawnVehicle", "TIIPURMPlayerSpawnVehicle", TIIP.URM.PlayerSpawnVehicle, -10 )
+hook.Add( "PlayerSpawnVehicle", "TIIPURMPlayerSpawnVehicle", TIIP.URM.PlayerSpawnVehicle, -1 )
 
 function TIIP.URM.PlayerSpawnedVehicle( ply, ent )
 	local haslimit, limit = TIIP.URM.HasURMLimit(ply,ent:GetClass())
@@ -232,12 +232,12 @@ function TIIP.URM.PlayerSpawnedVehicle( ply, ent )
 		ply:AddCount(haslimit,ent)
 	end
 end
-hook.Add( "PlayerSpawnedVehicle", "TIIPURMPlayerSpawnedVehicle", TIIP.URM.PlayerSpawnedVehicle, -10 )
+hook.Add( "PlayerSpawnedVehicle", "TIIPURMPlayerSpawnedVehicle", TIIP.URM.PlayerSpawnedVehicle, -1 )
 
 function TIIP.URM.PlayerLoadout( ply )
 	return TIIP.URM.SetPlayerLoadout(ply) 
 end
-hook.Add( "PlayerLoadout", "TIIPURMPlayerLoadout", TIIP.URM.PlayerLoadout, -10 )
+hook.Add( "PlayerLoadout", "TIIPURMPlayerLoadout", TIIP.URM.PlayerLoadout, -1 )
 
 timer.Simple(5, function()	
 		
