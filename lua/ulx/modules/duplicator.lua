@@ -1,11 +1,8 @@
 
 TIIP = TIIP or {}
 TIIP.URM = TIIP.URM or {}
-TIIP.URM.LoadTable = TIIP.URM.LoadTable or {}
-if not TIIP.URM.Loaded then
-	table.insert(TIIP.URM.LoadTable,"ulx/modules/duplicator.lua")
-	return
-end
+
+timer.Simple(5, function() include("ulx/modules/duplicator.lua") end)
 
 local weapons = {
 	"weapon_357",
