@@ -195,7 +195,7 @@ urm.restrictions.addbutton.DoClick = function()
 		if not urm.restrictions.type_suggestions[type] then
 			str = urm.restrictions.search:GetValue()
 			local isvalid = true
-			if (type == "prop" or type == "effect") then
+			if (type == "prop") then
 				isvalid = util.IsValidProp( str )
 			elseif (type == "ragdoll") then
 				isvalid = util.IsValidProp( str )
@@ -270,7 +270,7 @@ urm.restrictions.editbutton.DoClick = function()
 		if not urm.restrictions.type_suggestions[type] then
 			str = urm.restrictions.search:GetValue()
 			local isvalid = true
-			if (type == "prop" or type == "effect") then
+			if (type == "prop") then
 				isvalid = not util.IsValidProp( str )
 			elseif (type == "ragdoll") then
 				isvalid = not util.IsValidRagdoll( str )
