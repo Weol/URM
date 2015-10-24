@@ -45,9 +45,11 @@ function TIIP.URM.CheckRestrictions(ply,str,type)
 	if not TIIP.URM.Restrictions[ply:GetUserGroup()] then return true end
 	if not TIIP.URM.Restrictions[ply:GetUserGroup()] then return TIIP.URM.ALLOW end
 	if not TIIP.URM.Restrictions[ply:GetUserGroup()][type] then return TIIP.URM.ALLOW end
-	if ply.WhiteListWeapons[str] then
-		ply.WhiteListWeapons[str] = nil
-		return TIIP.URM.ALLOW
+	if ply.WhiteListWeapons then
+		if ply.WhiteListWeapons[str] then
+			ply.WhiteListWeapons[str] = nil
+			return TIIP.URM.ALLOW
+		end
 	end
 	if (TIIP.URM.Restrictions[ply:GetUserGroup()][type][str] == TIIP.URM.OVERRIDE) then return TIIP.URM.OVERRIDE end
 	if TIIP.URM.Restrictions[ply:GetUserGroup()][type][str] then return TIIP.URM.DENY end
