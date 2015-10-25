@@ -10,7 +10,7 @@ end
 function TIIP.URM.PlayerSpawnSENT( ply, sent )
 	local value = TIIP.URM.CheckRestrictions(ply,sent,"entity")
 	if (value == TIIP.URM.DENY) then
-		ply:RestrictionHit("This entity has been restricted!")
+		ply:RestrictionHit("This entity has been restricted from your usergroup!")
 		return false
 	elseif (value == TIIP.URM.OVERRIDE) then
 		return true
@@ -37,7 +37,7 @@ hook.Add( "PlayerSpawnedSENT", "TIIPURMPlayerSpawnedProp", TIIP.URM.PlayerSpawne
 function TIIP.URM.PlayerSpawnProp( ply, mdl )
 	local value = TIIP.URM.CheckRestrictions(ply,mdl,"prop")
 	if (value == TIIP.URM.DENY) then
-		ply:RestrictionHit("This prop has been restricted!")
+		ply:RestrictionHit("This prop has been restricted from your usergroup!")
 		return false
 	elseif (value == TIIP.URM.OVERRIDE) then
 		return true
@@ -65,7 +65,7 @@ hook.Add( "PlayerSpawnedProp", "TIIPURMPlayerSpawnedProp", TIIP.URM.PlayerSpawne
 function TIIP.URM.CanTool( ply, tr, tool )
 	local value = TIIP.URM.CheckRestrictions(ply,tool,"tool")
 	if (value == TIIP.URM.DENY) then
-		ply:RestrictionHit("This tool has been restricted!")
+		ply:RestrictionHit("This tool has been restricted from your usergroup!")
 		return false
 	elseif (value == TIIP.URM.OVERRIDE) then
 		return true
@@ -77,7 +77,7 @@ hook.Add( "CanTool", "TIIPURMCanTool", TIIP.URM.CanTool, -1 )
 function TIIP.URM.PlayerSpawnEffect( ply, mdl )
 	local value = TIIP.URM.CheckRestrictions(ply,mdl,"effect")
 	if (value == TIIP.URM.DENY) then
-		ply:RestrictionHit("This effect has been restricted!")
+		ply:RestrictionHit("This effect has been restricted from your usergroup!")
 		return false
 	elseif (value == TIIP.URM.OVERRIDE) then
 		return true
@@ -104,7 +104,7 @@ hook.Add( "PlayerSpawnedEffect", "TIIPURMPlayerSpawnedEffect", TIIP.URM.PlayerSp
 function TIIP.URM.PlayerSpawnNPC( ply, npc, weapon )
 	local value = TIIP.URM.CheckRestrictions(ply,npc,"npc")
 	if (value == TIIP.URM.DENY) then
-		ply:RestrictionHit("This npc has been restricted!")
+		ply:RestrictionHit("This npc has been restricted from your usergroup!")
 		return false
 	elseif (value == TIIP.URM.OVERRIDE) then
 		return true
@@ -137,7 +137,7 @@ hook.Add( "PlayerSpawnedNPC", "TIIPURMPlayerSpawnedNPC", TIIP.URM.PlayerSpawnedN
 function TIIP.URM.PlayerSpawnRagdoll( ply, mdl )
 	local value = TIIP.URM.CheckRestrictions(ply,mdl,"ragdoll")
 	if (value == TIIP.URM.DENY) then
-		ply:RestrictionHit("This ragdoll has been restricted!")
+		ply:RestrictionHit("This ragdoll has been restricted from your usergroup!")
 		return false
 	elseif (value == TIIP.URM.OVERRIDE) then
 		return true
@@ -164,7 +164,7 @@ hook.Add( "PlayerSpawnedRagdoll", "TIIPURMPlayerSpawnedRagdoll", TIIP.URM.Player
 function TIIP.URM.PlayerSpawnSWEP( ply, class, weapon )
 	local value = TIIP.URM.CheckRestrictions(ply,class,"swep")
 	if (value == TIIP.URM.DENY) then
-		ply:RestrictionHit("This weapon has been restricted!")
+		ply:RestrictionHit("This weapon has been restricted from your usergroup!")
 		return false
 	elseif (value == TIIP.URM.OVERRIDE) then 
 		return true 
@@ -210,7 +210,7 @@ hook.Add( "PlayerCanPickupWeapon", "TIIPURMPlayerCanPickupWeapon", TIIP.URM.Play
 function TIIP.URM.PlayerSpawnVehicle( ply, mdl, name, vehicle_table )
 	local value = TIIP.URM.CheckRestrictions(ply,name,"vehicle")
 	if (value == TIIP.URM.DENY) then
-		ply:RestrictionHit("This vehicle has been restricted!")
+		ply:RestrictionHit("This vehicle has been restricted from your usergroup!")
 		return false
 	elseif (value == TIIP.URM.OVERRIDE) then
 		return true
