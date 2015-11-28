@@ -28,23 +28,32 @@ local vehicles = table.GetKeys(list.Get( "Vehicles" ))
 local npcs = table.GetKeys(list.Get( "NPC" ))
 local entities = table.GetKeys(list.Get( "SpawnableEntities" ))
 
-if AdvDupe then
-	function TIIP.CheckPlayerSpawn(ply, Ent, EntTable) 
-		if (Ent == "prop_physics") then return true end
-
-		local ret = true
-		
-		--Check if ent is restricted in all the different types
-		if (table.HasValue(weapons,Ent)) and not(TIIP.URM.PlayerSpawnSWEP( ply, Ent )) then ret = false end 
-		
-		if (table.HasValue(vehicles,Ent)) and not(TIIP.URM.PlayerSpawnVehicle( ply, _, Ent )) then ret = false end
-		
-		if (table.HasValue(entities,Ent)) and not(TIIP.URM.PlayerSpawnSENT( ply, Ent )) then ret = false end
-		
-		if (table.HasValue(npcs,Ent)) and not(TIIP.URM.PlayerSpawnNPC( ply, Ent )) then ret = false  end
-		
-		return ret
-		
+function TIIP.CheckPlayerSpawn(ply, Ent, EntTable) 
+	if (string.lower(type(Ent)) == "table") then
+		Ent = Ent.Class
 	end
+
+	if (Ent == "prop_physics") then return true end
+	
+	local ret = true
+		
+	--Check if ent is restricted in all the different types
+	if (table.HasValue(weapons,Ent)) and (TIIP.URM.PlayerSpawnSWEP( ply, Ent, Ent ) == false) then ret = false end 
+		
+	if (table.HasValue(vehicles,Ent)) and (TIIP.URM.PlayerSpawnVehicle( ply, _, Ent ) == false) then ret = false end
+		
+	if (table.HasValue(entities,Ent)) and (TIIP.URM.PlayerSpawnSENT( ply, Ent ) == false) then ret = false end
+		
+	if (table.HasValue(npcs,Ent)) and (TIIP.URM.PlayerSpawnNPC( ply, Ent ) == false) then ret = false  end
+
+	return ret
+		
+end
+
+if AdvDupe then
 	AdvDupe.AdminSettings.AddEntCheckHook( "TIIPURMCheckPlayerDuplicate", TIIP.CheckPlayerSpawn )
+end
+
+if AdvDupe2 then
+	hook.Add( "PlayerSpawnEntity", "TIIPURMPlayerSpawnEntity", TIIP.CheckPlayerSpawn, -1 )
 end
