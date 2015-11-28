@@ -321,8 +321,8 @@ urm.loadouts.setloadoutbutton.DoClick = function()
 	textbox.OnTextChanged = function()
 		populatePlayerList()
 		for k, v in pairs(listview:GetLines()) do
-			local text = textbox:GetValue()
-			local item = v:GetValue(1)
+			local text = string.lower(textbox:GetValue())
+			local item = string.lower(v:GetValue(1))
 			if not string.match(item,text) then
 				listview:RemoveLine(k)
 			end
