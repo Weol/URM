@@ -195,10 +195,8 @@ urm.restrictions.addbutton.DoClick = function()
 		if not urm.restrictions.type_suggestions[type] then
 			str = urm.restrictions.search:GetValue()
 			local isvalid = true
-			if (type == "prop") then
-				isvalid = util.IsValidProp( str )
-			elseif (type == "ragdoll") then
-				isvalid = util.IsValidProp( str )
+			if not(string.Left(str,7) == "models/") then
+				isvalid = false
 			end
 			if isvalid then
 				if not urm.restrictions.isrestricted(usergroup,type,str) then
@@ -270,10 +268,8 @@ urm.restrictions.editbutton.DoClick = function()
 		if not urm.restrictions.type_suggestions[type] then
 			str = urm.restrictions.search:GetValue()
 			local isvalid = true
-			if (type == "prop") then
-				isvalid = not util.IsValidProp( str )
-			elseif (type == "ragdoll") then
-				isvalid = not util.IsValidRagdoll( str )
+			if not(string.Left(str,7) == "models/") then
+				isvalid = false
 			end
 			if isvalid then
 				if not urm.restrictions.isrestricted(usergroup,type,str) then
