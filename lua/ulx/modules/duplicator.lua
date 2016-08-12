@@ -63,34 +63,35 @@ if AdvDupe2 then
 	hook.Add( "AdvDupe_FinishPasting", "TIIPURMFinishedPasting", function(data) 
 		local ply = data[1].Player
 		
-		
-		for _,entity in pairs(data[1].CreatedEntities) do 
-		
-			local str = entity:GetClass()
-			model = false
+		if ply then
+			for _,entity in pairs(data[1].CreatedEntities) do 
 			
-			if (string.lower(entity:GetClass()) == "prop_physics" or string.lower(entity:GetClass()) == "prop_ragdoll") then
-				str = entity:GetModel()
-				model = true
-			elseif (string.lower(entity:GetClass()) == "prop_effect") then  
-				str = entity:GetTable()[7]
-			elseif (entity:GetTable().VehicleName) then  
-				str = entity:GetTable().VehicleName
-			end
-			
-			if !ply:CheckLimit(str,true) then
-				entity:Remove()
-			elseif not model then	
-				local haslimit, limit = TIIP.URM.HasURMLimit(ply,str)
-				if haslimit then
-					if (type(limit) == "string") then
-						ply:AddCount(limit,entity)
-					end
+				local str = entity:GetClass()
+				model = false
 				
-					ply:AddCount(haslimit,entity)
+				if (string.lower(entity:GetClass()) == "prop_physics" or string.lower(entity:GetClass()) == "prop_ragdoll") then
+					str = entity:GetModel()
+					model = true
+				elseif (string.lower(entity:GetClass()) == "prop_effect") then  
+					str = entity:GetTable()[7]
+				elseif (entity:GetTable().VehicleName) then  
+					str = entity:GetTable().VehicleName
 				end
+				
+				if !ply:CheckLimit(str,true) then
+					entity:Remove()
+				elseif not model then	
+					local haslimit, limit = TIIP.URM.HasURMLimit(ply,str)
+					if haslimit then
+						if (type(limit) == "string") then
+							ply:AddCount(limit,entity)
+						end
+					
+						ply:AddCount(haslimit,entity)
+					end
+				end
+				
 			end
-			
 		end
 	end, -1 )
 end
