@@ -239,6 +239,15 @@ function TIIP.URM.PlayerLoadout( ply )
 end
 hook.Add( "PlayerLoadout", "TIIPURMPlayerLoadout", TIIP.URM.PlayerLoadout, -1 )
 
+function TIIP.URM.PlayerAuthed( ply )
+	if ULib.ucl.query( ply, "xgui_urm" ) then
+		TIIP.URM.SendCompressedTable(ply,TIIP.URM.DATA["TIIPURMRestrictions"](), "TIIPURMRestrictions")
+		TIIP.URM.SendCompressedTable(ply,TIIP.URM.DATA["TIIPURMLimits"](), "TIIPURMLimits")
+		TIIP.URM.SendCompressedTable(ply,TIIP.URM.DATA["TIIPURMLoadouts"](), "TIIPURMLoadouts")
+	end
+end
+hook.Add( "UCLAuthed", "TIIPURMPlayerAuthed", TIIP.URM.PlayerAuthed, -1 )
+
 timer.Simple(5, function()	
 		
 	--Override ents.Create

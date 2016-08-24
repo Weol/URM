@@ -97,6 +97,7 @@ function urm.restrictions.reloadsuggestions()
 end
 
 function urm.restrictions.reloaditems()
+	if not urm.Restrictions then return end
 	if not urm.restrictions.grouplist:GetSelected()[1] then return end
 	if not urm.restrictions.typelist:GetSelected()[1] then return end
 	urm.restrictions.itemlist:Clear()
@@ -104,7 +105,7 @@ function urm.restrictions.reloaditems()
 	for k,_ in pairs(urm.restrictions.grouplist:GetSelected()) do 
 		usergroup = urm.restrictions.grouplist:GetSelected()[(#urm.restrictions.grouplist:GetSelected()+1)-k]
 		usergroup = usergroup:GetValue(1)
-		local usergroup_table = xgui.data.TIIPURMRestrictions[usergroup]
+		local usergroup_table = urm.Restrictions[usergroup]
 		if usergroup_table then  
 			if usergroup then
 				local type = urm.restrictions.RestrictTypes[urm.restrictions.typelist:GetSelected()[1]:GetValue(1)]
@@ -122,10 +123,10 @@ function urm.restrictions.reloaditems()
 end
 
 function urm.restrictions.isrestricted(usergroup,type,str)
-	if xgui.data.TIIPURMRestrictions then
-		if xgui.data.TIIPURMRestrictions[usergroup] then
-			if xgui.data.TIIPURMRestrictions[usergroup][type] then
-				if xgui.data.TIIPURMRestrictions[usergroup][type][str] then
+	if urm.Restrictions then
+		if urm.Restrictions[usergroup] then
+			if urm.Restrictions[usergroup][type] then
+				if urm.Restrictions[usergroup][type][str] then
 					return true
 				end
 			end
@@ -295,10 +296,10 @@ urm.restrictions.editbutton.DoClick = function()
 	end
 end
 
-function urm.restrictions.process( t )
+function urm.restrictions.process()
 	urm.restrictions.reloaditems()
 end
-xgui.hookEvent( "TIIPURMRestrictions", "process", urm.restrictions.process )
+hook.Add("TIIPURMRestrictionsUpdate","TIIPURMRestrictionsUpdateHook", urm.restrictions.process)
 urm.restrictions.Initialize()
 
 xgui.addSettingModule( "Restrictions", urm.restrictions.panel, "icon16/shield.png", "xgui_urm" ) 

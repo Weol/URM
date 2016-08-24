@@ -84,7 +84,7 @@ function urm.limits.reloadcombo()
 	
 	urm.limits.customcombo:Clear()
 	
-	local limits = xgui.data.TIIPURMLimits
+	local limits = urm.Limits
 	
 	for k,usergroup in pairs(urm.limits.grouplist:GetSelected()) do
 		for k,value in pairs(usergroup) do
@@ -110,11 +110,12 @@ function urm.limits.reloadsuggestions()
 end
 
 function urm.limits.reloaditems()
+	if not urm.Limits then return end
 	if not urm.limits.grouplist:GetSelected()[1] then return end
 	urm.limits.itemlist:Clear()
 	for k,usergroup in pairs(urm.limits.grouplist:GetSelected()) do 
 		usergroup = usergroup:GetValue(1)
-		local usergroup_table = xgui.data.TIIPURMLimits[usergroup]
+		local usergroup_table = urm.Limits[usergroup]
 		if usergroup_table then  
 			for item,state in pairs(usergroup_table) do
 				urm.limits.itemlist:AddLine( usergroup,item,state ) 
@@ -125,9 +126,9 @@ function urm.limits.reloaditems()
 end
 
 function urm.limits.haslimit(usergroup,str)
-	if xgui.data.TIIPURMLimits then
-		if xgui.data.TIIPURMLimits[usergroup] then
-			if xgui.data.TIIPURMLimits[usergroup][str] then
+	if urm.Limits then
+		if urm.Limits[usergroup] then
+			if urm.Limits[usergroup][str] then
 				return true
 			end
 		end
@@ -306,10 +307,10 @@ urm.limits.editbutton.DoClick = function()
 	LocalPlayer():ConCommand(string.format("ulx setlimit \"%s\" \"%s\" \"%i\" \"%s\"",usergroup,str,limit,"1"))
 end
 
-function urm.limits.process( t )
+function urm.limits.process()
 	urm.limits.reloaditems()
 end
-xgui.hookEvent( "TIIPURMLimits", "process", urm.limits.process )
+hook.Add("TIIPURMLimitsUpdate","TIIPURMLimitsUpdateHook", urm.limits.process)
 urm.limits.Initialize()
 
 xgui.addSettingModule( "Limits", urm.limits.panel, "icon16/table.png", "xgui_urm" ) 

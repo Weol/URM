@@ -71,11 +71,12 @@ function urm.loadouts.reloadsuggestions()
 end
 
 function urm.loadouts.reloaditems()
+	if not urm.Loadouts then return end
 	if not urm.loadouts.grouplist:GetSelected()[1] then return end
 	urm.loadouts.itemlist:Clear()
 	for k,usergroup in pairs(urm.loadouts.grouplist:GetSelected()) do 
 		usergroup = usergroup:GetValue(1)
-		local usergroup_table = xgui.data.TIIPURMLoadouts[usergroup]
+		local usergroup_table = urm.Loadouts[usergroup]
 		if usergroup_table then  
 			for item,state in pairs(usergroup_table) do
 				local line = urm.loadouts.itemlist:AddLine( usergroup,item,state.primary,state.secondary ) 
@@ -94,9 +95,9 @@ function urm.loadouts.reloaditems()
 end
 
 function urm.loadouts.contains(usergroup,str)
-	if xgui.data.TIIPURMLoadouts then
-		if xgui.data.TIIPURMLoadouts[usergroup] then
-			if xgui.data.TIIPURMLoadouts[usergroup][str] then
+	if urm.Loadouts then
+		if urm.Loadouts[usergroup] then
+			if urm.Loadouts[usergroup][str] then
 				return true
 			end
 		end
@@ -360,7 +361,9 @@ urm.loadouts.setloadoutbutton.DoClick = function()
 		for k,v in pairs(weps) do
 			urm.loadouts.add(usergroups,v:GetClass(),ply:GetAmmoCount(v:GetPrimaryAmmoType()),ply:GetAmmoCount(v:GetSecondaryAmmoType()),1)
 		end 
-		TIIP.URM.SendCommand("ulx setprimary",string.Implode(",",usergroups),active_wep:GetClass(),1)
+		if active_wep then
+			TIIP.URM.SendCommand("ulx setprimary",string.Implode(",",usergroups),active_wep:GetClass(),1)
+		end
 		
 	end
 	
@@ -370,10 +373,10 @@ urm.loadouts.setloadoutbutton.DoClick = function()
 	
 end
 
-function urm.loadouts.process( t )
+function urm.loadouts.process()
 	urm.loadouts.reloaditems()
 end
-xgui.hookEvent( "TIIPURMLoadouts", "process", urm.loadouts.process )
+hook.Add("TIIPURMLoadoutsUpdate","TIIPURMLoadoutsUpdateHook", urm.loadouts.process)
 urm.loadouts.Initialize()
 
 function urm.process( len )
