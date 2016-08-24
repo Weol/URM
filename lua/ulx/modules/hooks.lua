@@ -223,7 +223,7 @@ end
 hook.Add( "PlayerSpawnVehicle", "TIIPURMPlayerSpawnVehicle", TIIP.URM.PlayerSpawnVehicle, -1 )
 
 function TIIP.URM.PlayerSpawnedVehicle( ply, ent )
-	local haslimit, limit = TIIP.URM.HasURMLimit(ply,ent:GetClass())
+	local haslimit, limit = TIIP.URM.HasURMLimit(ply,ent:GetTable().VehicleName)
 	if haslimit then
 		if (type(limit) == "string") then
 			ply:AddCount(limit,ent)
