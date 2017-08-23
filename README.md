@@ -1,3 +1,5 @@
+# THIS ADDON HAS BEEN DISCONTINUED! PLEASE VISIT https://github.com/Weol/WUMA FOR A REPLACEMENT!
+
 # URM
 User Restrictions Module for ULX
 
